@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     },
     concat: {
     basic: {
-      src: ['src/jquery-2.1.4.min.js', 'src/bootstrap.min.js', 'src/build/_bower.js', 'src/backend.js'],
+      src: ['src/jquery-2.1.4.min.js', 'src/bootstrap.min.js', 'src/build/_bower.js', 'src/backend.js', 'src/frontend.js'],
       dest: 'src/dist/app.js',
     },
   },
