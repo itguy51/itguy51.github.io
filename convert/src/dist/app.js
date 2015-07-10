@@ -1805,12 +1805,21 @@ function log10(e) {
     return e >= 0 || 1 >= e ? e : Math.log(e) / Math.LN10
 }
 var auto = false;
+var addition = "";
 $(document).ready(function() {
     $("#auto").change(function(evt){
         //console.log("Check Chg.");
         auto = $("#auto").prop("checked");
         //console.log(auto);
     })
+    $("#useITS").change(function(ev){
+        if($("#useITS").prop("checked")){
+            addition = "&app=itunes";
+
+        }else{
+            addition = "";
+        }
+    });
     $("#go").click(function(evt) {
         evt.stopImmediatePropagation();
         evt.stopPropagation();
@@ -1818,10 +1827,10 @@ $(document).ready(function() {
         var e = $("#uri").val();
         convertTrack(e.split(":")[2], function(e) {
             if($("#auto").prop("checked")){
-                var url = "itmss://" + e[0][1].trackViewUrl.replace("https://", "").split("&")[0];
+                var url = "itmss://" + e[0][1].trackViewUrl.replace("https://", "").split("&")[0]+ "&at=1000l5Kc" + addition;
                 window.location.href = url;
             }
-            e.length > 0 ? (newItem = renderNewItem(e[0][1].trackViewUrl.replace("https://", "").split("&")[0], Math.round(1 / (log10(e[0][0]) + 1) * 100)), $(newItem).insertAfter("#controls")) : alert("Oops. There was a matching error. That song might not be on iTunes.")
+            e.length > 0 ? (newItem = renderNewItem(e[0][1].trackViewUrl.replace("https://", "").split("&")[0] + "&at=1000l5Kc" + addition, Math.round(1 / (log10(e[0][0]) + 1) * 100)), $(newItem).insertAfter("#controls")) : alert("Oops. There was a matching error. That song might not be on iTunes.")
         })
     })
 });
